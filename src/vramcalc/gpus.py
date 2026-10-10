@@ -56,9 +56,12 @@ def detect() -> tuple[str, int]:
         raise RuntimeError(_DETECT_HINT)
     try:
         pynvml.nvmlInit()
-        handle = pynvml.nvmlDeviceGetHandleByIndex(0)
-        name = pynvml.nvmlDeviceGetName(handle)
-        total = pynvml.nvmlDeviceGetMemoryInfo(handle).total
+        try:
+            handle = pynvml.nvmlDeviceGetHandleByIndex(0)
+            name = pynvml.nvmlDeviceGetName(handle)
+            total = pynvml.nvmlDeviceGetMemoryInfo(handle).total
+        finally:
+            pynvml.nvmlShutdown()
     except Exception as exc:  # pynvml raises NVMLError subclasses
         raise RuntimeError(_DETECT_HINT) from exc
     return (name.decode() if isinstance(name, bytes) else name), int(total)

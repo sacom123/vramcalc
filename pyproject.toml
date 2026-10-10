@@ -1,6 +1,6 @@
 [project]
 name = "vramcalc"
-version = "0.1.0"
+version = "0.1.1"
 description = "Predict GPU VRAM usage of Llama-family models from config.json and check whether they fit a GPU"
 readme = "README.md"
 license = "MIT"

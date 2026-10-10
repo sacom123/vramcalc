@@ -105,3 +105,8 @@ def test_step_workspace_can_dominate_peak(tiny_cfg):
                  attn_impl="flash")
     assert e.step_workspace > e.activations + e.autocast_cache
     assert e.peak_extra == e.step_workspace
+
+
+def test_bool_lora_rank_rejected(tiny_cfg):
+    with pytest.raises(ValueError, match="lora_rank"):
+        estimate(tiny_cfg, mode="train", lora_rank=True)

@@ -1,5 +1,7 @@
 # vramcalc
 
+[![PyPI](https://img.shields.io/pypi/v/vramcalc)](https://pypi.org/project/vramcalc/) [![CI](https://github.com/sacom123/vramcalc/actions/workflows/ci.yml/badge.svg)](https://github.com/sacom123/vramcalc/actions/workflows/ci.yml) [![Python](https://img.shields.io/pypi/pyversions/vramcalc)](https://pypi.org/project/vramcalc/) [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 [English](#english) | [한국어](#한국어)
 
 ---

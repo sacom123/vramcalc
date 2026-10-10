@@ -153,7 +153,7 @@ def _validate(p: EstimateParams) -> None:
     if p.lora_rank is not None:
         if p.mode != "train":
             raise ValueError("lora_rank requires mode='train'")
-        if not isinstance(p.lora_rank, int) or p.lora_rank <= 0:
+        if not isinstance(p.lora_rank, int) or isinstance(p.lora_rank, bool) or p.lora_rank <= 0:
             raise ValueError(f"lora_rank must be a positive integer, got {p.lora_rank!r}")
     if (not isinstance(p.overhead_gb, (int, float)) or not math.isfinite(p.overhead_gb)
             or p.overhead_gb < 0):

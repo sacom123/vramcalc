@@ -58,3 +58,35 @@ def test_does_not_fit(tiny_cfg):
     assert r.ok is False
     assert r.margin_bytes < 0
     assert "short" in r.message
+
+
+def test_detect_shuts_down_nvml(monkeypatch):
+    calls = []
+
+    class FakeInfo:
+        total = 24 * 2**30
+
+    class FakeNvml:
+        @staticmethod
+        def nvmlInit():
+            calls.append("init")
+
+        @staticmethod
+        def nvmlDeviceGetHandleByIndex(i):
+            return i
+
+        @staticmethod
+        def nvmlDeviceGetName(h):
+            return b"Fake GPU"
+
+        @staticmethod
+        def nvmlDeviceGetMemoryInfo(h):
+            return FakeInfo
+
+        @staticmethod
+        def nvmlShutdown():
+            calls.append("shutdown")
+
+    monkeypatch.setitem(sys.modules, "pynvml", FakeNvml)
+    assert gpus.detect() == ("Fake GPU", 24 * 2**30)
+    assert calls == ["init", "shutdown"]
