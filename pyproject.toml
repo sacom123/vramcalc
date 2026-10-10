@@ -1,0 +1,35 @@
+[project]
+name = "vramcalc"
+version = "0.1.0"
+description = "Predict GPU VRAM usage of Llama-family models from config.json and check whether they fit a GPU"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+hf = ["huggingface_hub"]
+bench = ["torch>=2.3", "transformers>=4.46,<5", "peft>=0.12", "nvidia-ml-py"]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+vramcalc = "vramcalc.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vramcalc"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
