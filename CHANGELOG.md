@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (unreleased)
+## 0.1.0 (2026-10-11)
 
 - Inference, full fine-tuning and LoRA memory estimation for Llama, Mistral, Qwen2 and Gemma dense models
 - `fits()` judgment with single-adjustment suggestions
