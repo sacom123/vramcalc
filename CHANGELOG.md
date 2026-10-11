@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 (2026-10-11)
+
+- Add RTX A6000, RTX 6000 Ada, A800 and H800 to the GPU table
+- Expose `load_config` for reading the raw config.json dict
+
 ## 0.1.1 (2026-10-11)
 
 - Reject `lora_rank=True` (bool was accepted as an int)

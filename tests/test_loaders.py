@@ -74,3 +74,13 @@ def test_name_falls_back_to_path_when_config_has_none(tmp_path, tiny_cfg):
     (d / "config.json").write_text(json.dumps(tiny_cfg))
     assert load_arch(d).name == "Qwen2.5-1.5B"
     assert load_arch(tiny_cfg).name == ""
+
+
+def test_load_config_returns_raw_dict(tmp_path, tiny_cfg):
+    from vramcalc.loaders import load_config
+
+    tiny_cfg["quantization_config"] = {"quant_method": "awq", "bits": 4}
+    (tmp_path / "config.json").write_text(json.dumps(tiny_cfg))
+    cfg = load_config(tmp_path)
+    assert cfg["quantization_config"]["quant_method"] == "awq"
+    assert load_config(tiny_cfg) is tiny_cfg

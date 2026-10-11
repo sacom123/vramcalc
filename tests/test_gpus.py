@@ -90,3 +90,8 @@ def test_detect_shuts_down_nvml(monkeypatch):
     monkeypatch.setitem(sys.modules, "pynvml", FakeNvml)
     assert gpus.detect() == ("Fake GPU", 24 * 2**30)
     assert calls == ["init", "shutdown"]
+
+
+@pytest.mark.parametrize("query", ["A6000", "a6000", "RTX A6000", "NVIDIA RTX A6000"])
+def test_lookup_a6000(query):
+    assert gpus.lookup(query) == ("RTX A6000", 48 * 2**30)

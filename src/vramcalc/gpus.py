@@ -15,8 +15,9 @@ GPUS: dict[str, int] = {name: gib * GIB for name, gib in {
     "RTX 4070 Ti Super": 16, "RTX 4080": 16, "RTX 4080 Super": 16, "RTX 4090": 24,
     "RTX 5070": 12, "RTX 5070 Ti": 16, "RTX 5080": 16, "RTX 5090": 32,
     "T4": 16, "V100 16GB": 16, "V100 32GB": 32,
-    "A10": 24, "A40": 48, "A100 40GB": 40, "A100 80GB": 80,
-    "H100 80GB": 80, "H200": 141, "L4": 24, "L40S": 48, "B200": 192,
+    "A10": 24, "A40": 48, "RTX A6000": 48, "RTX 6000 Ada": 48,
+    "A100 40GB": 40, "A100 80GB": 80, "A800 80GB": 80,
+    "H100 80GB": 80, "H800 80GB": 80, "H200": 141, "L4": 24, "L40S": 48, "B200": 192,
 }.items()}
 
 # Provisional safety reserve for an otherwise idle GPU. Confirm with bench.
